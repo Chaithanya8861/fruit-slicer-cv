@@ -1,0 +1,13 @@
+{
+  "name": "fruit-slicer-cv",
+  "version": "1.0.0",
+  "description": "A Fruit-Ninja-style game where you slice falling fruit using your finger, tracked live through your webcam with computer vision (MediaPipe Hands).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

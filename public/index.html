@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fruit Slicer CV 🍉✋</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Hidden webcam video source (used only as CV input, mirrored preview shown in corner) -->
+    <video id="webcam" autoplay playsinline muted></video>
+
+    <!-- Main game canvas: fruits, particles, slice trail all drawn here -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Small mirrored self-view so player can see their hand -->
+    <canvas id="previewCanvas"></canvas>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div id="score">Score: 0</div>
+      <div id="lives">❤️❤️❤️</div>
+      <div id="combo"></div>
+    </div>
+
+    <!-- Start screen -->
+    <div id="startScreen" class="overlay">
+      <h1>🍉 Fruit Slicer CV 🍓</h1>
+      <p>Slice the falling fruit with your <strong>index finger</strong>.<br/>
+         Your webcam tracks your hand — no mouse or touch needed!</p>
+      <p class="hint">Avoid the 💣 bombs. Reach <strong id="targetScoreHint"></strong> points to win.<br/>
+         Miss too many fruits and it's game over.</p>
+      <button id="startBtn">Enable Camera &amp; Start</button>
+      <p id="cameraError" class="error"></p>
+    </div>
+
+    <!-- Game over / win screen -->
+    <div id="endScreen" class="overlay hidden">
+      <h1 id="endTitle">Game Over</h1>
+      <p id="endMessage"></p>
+      <button id="restartBtn">Play Again</button>
+    </div>
+
+    <!-- Calibration / loading screen while CV model loads -->
+    <div id="loadingScreen" class="overlay hidden">
+      <h1>Loading hand tracking model…</h1>
+      <div class="spinner"></div>
+    </div>
+
+  </div>
+
+  <!-- MediaPipe Hands + camera/drawing utilities (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+  <!-- Game source -->
+  <script src="js/handTracker.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/fruit.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
